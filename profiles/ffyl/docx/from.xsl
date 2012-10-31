@@ -59,6 +59,13 @@
   <!-- Removiendo <encodingDesc> -->
   <xsl:template match="tei:encodingDesc" mode="pass3"/>
 
+  <!-- Agregando el título de la obra -->
+  <xsl:template match="tei:titleStmt/tei:title" mode="pass3">
+    <title>
+      <xsl:value-of select="//tei:p[@rend='Title']"/>
+    </title>
+  </xsl:template>
+
   <!-- Agregando el autor de la obra y no el autor del documento -->
   <xsl:template match="tei:titleStmt/tei:author" mode="pass3">
     <author>
