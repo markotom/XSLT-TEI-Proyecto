@@ -134,7 +134,17 @@
   <!-- Modificando <publicationStmt> -->
   <xsl:template match="tei:publicationStmt" mode="pass3">
     <publicationStmt>
-      <publisher>Facultad de Filosofía y Letras, UNAM</publisher>
+      <publisher>
+        <xsl:choose>
+          <xsl:when test="//tei:hi[@rend='editorial']">
+            <xsl:value-of select="//tei:hi[@rend='editorial']" />  
+          </xsl:when>
+          <xsl:otherwise>
+            Facultad de Filosofía y Letras, UNAM 
+          </xsl:otherwise>
+        </xsl:choose>  
+      </publisher>
+
       <pubPlace>Universidad Nacional Autónoma de México</pubPlace>
       <adress>
         <addrLine>Ciudad Universitaria, Delegación Coyoacán. C.P. 04510 México, Distrito Federal</addrLine>
