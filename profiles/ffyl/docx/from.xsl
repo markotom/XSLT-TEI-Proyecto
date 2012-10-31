@@ -204,6 +204,28 @@
         <docAuthor>
           <xsl:value-of select="//tei:p[@rend='autor']"/>
         </docAuthor>
+
+        <!-- Añadiendo información de libro impreso -->
+        <xsl:if test="//tei:hi[@rend='editorial-impresion']">
+          <docImprint>
+            <publisher>
+              <xsl:value-of select="//tei:hi[@rend='editorial-impresion']"/>
+            </publisher>
+
+            <xsl:if test="//tei:hi[@rend='lugar-impresion']">
+              <pubPlace>
+                <xsl:value-of select="//tei:hi[@rend='lugar-impresion']"/>
+              </pubPlace>
+            </xsl:if>
+
+            <xsl:if test="//tei:hi[@rend='fecha-impresion']">
+              <docDate>
+                <xsl:value-of select="//tei:hi[@rend='fecha-impresion']"/>
+              </docDate>
+            </xsl:if>
+          </docImprint>
+        </xsl:if>
+
       </titlePage>
 
       <!-- Añadiendo la sinopsis o el resumen, si existe -->
